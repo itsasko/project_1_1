@@ -5,23 +5,28 @@ void quick_sort(std::vector<int>::iterator iter_begin, std::vector<int>::iterato
     if (iter_begin == iter_end) return;
     if (std::distance(iter_begin, iter_end) == 1){
         if(*iter_end > *iter_begin){
-            int aux = *iter_begin;
-            *iter_end = *iter_begin;
-            *iter_begin = aux;}
+        std::swap(*iter_begin, *iter_end);
+        }
         return;
     }
     std::vector<int>::iterator pivot = iter_begin;
-    std::vector<int>::iterator i = iter_begin+1;
+    std::vector<int>::iterator i = iter_begin+1; // left - less or equal
     std::vector<int>::iterator j = iter_end;
-    while(i != j){
+    while(i > j){ // Hoare
         if(*i > *pivot){
-            if (*j <= *pivot) std::swap(*i, *j);
-            else j++;
-        }
-        else{
             i++;
         }
+        if(*j <= *pivot){
+            j--;
+        }
+        if(*i > *pivot && *j <= *pivot){
+            std::swap(*i, *j);
+            i++;
+            j--;
+        }
     }
+    if (i > j) j++;
+    std::swap(*i, *pivot);
     quick_sort(iter_begin, i);
     quick_sort(j++, iter_end);
 }
