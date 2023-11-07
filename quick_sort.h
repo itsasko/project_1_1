@@ -12,23 +12,26 @@ void quick_sort(std::vector<int>::iterator iter_begin, std::vector<int>::iterato
     std::vector<int>::iterator pivot = iter_begin;
     std::vector<int>::iterator i = iter_begin+1; // left - less or equal
     std::vector<int>::iterator j = iter_end;
-    while(i > j){ // Hoare
-        if(*i > *pivot){
-            i++;
-        }
-        if(*j <= *pivot){
-            j--;
-        }
+    while(i < j){ // Hoare
         if(*i > *pivot && *j <= *pivot){
             std::swap(*i, *j);
             i++;
             j--;
         }
+        if(*i <= *pivot){
+            i++;
+        }
+        if(*j > *pivot){
+            j--;
+        }
     }
     if (i > j) j++;
-    std::swap(*i, *pivot);
-    quick_sort(iter_begin, i);
-    quick_sort(j++, iter_end);
+    if(*i <= *pivot) std::swap(*i, *pivot);
+    if(j != iter_end){
+        quick_sort(j++, iter_end);
+        quick_sort(iter_begin, i);
+    }
+    return;
 }
 
 #endif //PROJECT_1_1_QUICK_SORT_H
