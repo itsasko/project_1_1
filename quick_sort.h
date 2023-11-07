@@ -31,6 +31,7 @@ void quick_sort(std::vector<int>::iterator iter_begin, std::vector<int>::iterato
         quick_sort(j++, iter_end);
         quick_sort(iter_begin, i);
     }
+
     return;
 }
 
