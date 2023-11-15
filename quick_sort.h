@@ -4,7 +4,7 @@
 void quick_sort(std::vector<int>::iterator iter_begin, std::vector<int>::iterator iter_end){
     if (iter_begin == iter_end) return;
     if (std::distance(iter_begin, iter_end) == 1){
-        if(*iter_end > *iter_begin){
+        if(*iter_end < *iter_begin){
         std::swap(*iter_begin, *iter_end);
         }
         return;
@@ -29,6 +29,7 @@ void quick_sort(std::vector<int>::iterator iter_begin, std::vector<int>::iterato
     if(*i <= *pivot) std::swap(*i, *pivot);
     if(j != iter_end) quick_sort(j, iter_end);
     if(--i != iter_begin) quick_sort(iter_begin, i);
+    else quick_sort(++i, ++j);
 
     return;
 }
