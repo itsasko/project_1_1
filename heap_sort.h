@@ -14,9 +14,13 @@ void building_a_heap(std::vector<int>::iterator iter_begin, std::vector<int>::it
         parent_index = (i_index - 1) / 2;
         std::vector<int>::iterator i = heap.begin() + i_index;
         std::vector<int>::iterator parent = heap.begin() + parent_index;
-        if(*i > *parent){
+        while(*i > *parent){
             std::swap(*i, *parent);
+            std::swap(i_index, parent_index);
             std::swap(i, parent);
+            parent_index = (i_index - 1) / 2;
+            parent = heap.begin() + parent_index;
+            if(i == heap.begin()) break;
         }
     }
     std::vector<int>::iterator i_1;
