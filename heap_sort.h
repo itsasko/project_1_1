@@ -8,7 +8,7 @@
 void building_a_heap(std::vector<int>::iterator iter_begin, std::vector<int>::iterator iter_end){
     std::vector<int> heap;
     int i_index, parent_index;
-    for (std::vector<int>::iterator j = iter_begin; j != iter_end; j++){
+    for (std::vector<int>::iterator j = iter_begin; j <= iter_end; j++){
         heap.push_back(*j);
         i_index = heap.size() - 1 ;
         parent_index = (i_index - 1) / 2;
