@@ -10,7 +10,7 @@ void building_a_heap(std::vector<int>::iterator iter_begin, std::vector<int>::it
     int i_index, parent_index;
     for (std::vector<int>::iterator j = iter_begin; j <= iter_end; j++){
         heap.push_back(*j);
-        i_index = heap.size() - 1 ;
+        i_index = heap.size() - 1;
         parent_index = (i_index - 1) / 2;
         std::vector<int>::iterator i = heap.begin() + i_index;
         std::vector<int>::iterator parent = heap.begin() + parent_index;
