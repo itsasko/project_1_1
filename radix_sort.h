@@ -1,7 +1,16 @@
 #ifndef PROJECT_1_1_RADIX_SORT_H
 #define PROJECT_1_1_RADIX_SORT_H
-static void counting_sort(std::vector<int>::iterator iter_begin, std::vector<int>::iterator iter_end){
-
+static void counting_sort(std::vector<int>::iterator &iter_begin, std::vector<int>::iterator &iter_end, int max_num){
+    std::vector<std::vector<std::vector<int>::iterator> box;
+    for (int i = 0; i < max_num; i++){
+        std::vector<int*> aux;
+        box.push_back(aux);
+    }
+    int i = 0;
+    for (auto j = iter_begin; j <= iter_end; j++){
+        box[i].push_back(j);
+        i++;
+    }
 }
 
 static int find_max(std::vector<int>::iterator iter_begin, std::vector<int>::iterator iter_end){
@@ -19,5 +28,5 @@ void radix_sort(std::vector<int>::iterator iter_begin, std::vector<int>::iterato
         digits ++;
         max_value / 10;
     }
-}
+
 #endif //PROJECT_1_1_RADIX_SORT_H
