@@ -1,16 +1,21 @@
 #ifndef PROJECT_1_1_RADIX_SORT_H
 #define PROJECT_1_1_RADIX_SORT_H
-static void counting_sort(std::vector<int>::iterator &iter_begin, std::vector<int>::iterator &iter_end, int max_num){
-    std::vector<std::vector<std::vector<int>::iterator> box;
+
+#define iterator1 std::vector<std::pair<std::vector<int>::iterator,int>>::iterator
+
+static std::vector<std::vector<std::pair<iterator1, int>>> counting_sort(iterator1  iter_begin, iterator1 iter_end, int max_num){
+    std::vector<std::vector<std::pair<std::vector<std::pair<std::vector<int>::iterator, int>>::iterator, int>>> box;
     for (int i = 0; i < max_num; i++){
-        std::vector<int*> aux;
+        std::vector<std::pair<std::vector<std::pair<std::vector<int>::iterator, int>>::iterator, int>> aux;
         box.push_back(aux);
     }
-    int i = 0;
     for (auto j = iter_begin; j <= iter_end; j++){
-        box[i].push_back(j);
-        i++;
+        std::pair<std::vector<int>::iterator, int> aux_pair;
+        aux_pair.first = j;
+        aux_pair.second = j
+        box[*(j.first)].push_back(j);
     }
+    return box;
 }
 
 static int find_max(std::vector<int>::iterator iter_begin, std::vector<int>::iterator iter_end){
@@ -22,11 +27,14 @@ static int find_max(std::vector<int>::iterator iter_begin, std::vector<int>::ite
     return max_value;
 }
 
-void radix_sort(std::vector<int>::iterator iter_begin, std::vector<int>::iterator iter_end){
+void radix_sort(std::vector<int>::iterator iter_begin, std::vector<int>::iterator iter_end) {
     int max_value = find_max(iter_begin, iter_end), digits = -1;
-    while(max_value > 1){
-        digits ++;
-        max_value / 10;
-    }
+    int aux = max_value;
+    while (aux > 1) {
+        digits++;
+        aux /= 10;
+    } // number of digits in the biggest number is obtained
+
+}
 
 #endif //PROJECT_1_1_RADIX_SORT_H
