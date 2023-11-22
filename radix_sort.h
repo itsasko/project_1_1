@@ -4,16 +4,15 @@
 #define iterator1 std::vector<std::pair<std::vector<int>::iterator,int>>::iterator
 
 static std::vector<std::vector<std::pair<iterator1, int>>> counting_sort(iterator1  iter_begin, iterator1 iter_end, int max_num){
-    std::vector<std::vector<std::pair<std::vector<std::pair<std::vector<int>::iterator, int>>::iterator, int>>> box;
+    std::vector<std::vector<std::pair<iterator1, int>>> box;
     for (int i = 0; i < max_num; i++){
-        std::vector<std::pair<std::vector<std::pair<std::vector<int>::iterator, int>>::iterator, int>> aux;
+        std::vector<std::pair<iterator1, int>> aux;
         box.push_back(aux);
     }
     for (auto j = iter_begin; j <= iter_end; j++){
-        std::pair<std::vector<int>::iterator, int> aux_pair;
-        aux_pair.first = j;
-        aux_pair.second = j
-        box[*(j.first)].push_back(j);
+        std::vector<int>::iterator aux_iter = (*j).first;
+        int aux_index = *aux_iter;
+        box[aux_index].push_back(*j); // make_pair also doesn't work
     }
     return box;
 }
