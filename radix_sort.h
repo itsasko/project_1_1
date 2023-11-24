@@ -10,7 +10,7 @@ static std::vector<int> counting_sort(std::vector<int>::iterator iter_begin, std
     for(auto i = iter_begin; i <= iter_end; i++){
         int aux = *i, digit;
         for(int j = 1; j <= max_digits; j++){
-            if(j = digit_to_sort) digit = aux%10;
+            if(j == digit_to_sort) digit = aux%10;
             aux /= 10;
         }
         pos[digit] += 1;
@@ -38,21 +38,20 @@ static int find_max(std::vector<int>::iterator iter_begin, std::vector<int>::ite
 }
 
 void radix_sort(std::vector<int>::iterator iter_begin, std::vector<int>::iterator iter_end) {
-    int max_value = find_max(iter_begin, iter_end), digits = -1;
+    int max_value = find_max(iter_begin, iter_end), digits = 0;
     std::vector<int> rs;
     int aux = max_value;
-    while (aux > 1) {
+    while (aux >= 1) {
         digits++;
         aux /= 10;
     } // number of digits in the biggest number is obtained
-    int size = std::distance(iter_begin, iter_end);
     for(int i = 1; i <= digits; i++){
-        for(int j = 0; j < size; j++){
-            rs = counting_sort(iter_begin, iter_end, j, digits);
-        }
+        rs = counting_sort(iter_begin, iter_end, i, digits);
+        for(auto k : rs) std::cout << k << " ";
+        std::cout << std::endl;
     }
+    iter_end = rs.begin() + std::distance(iter_begin, iter_end);
     iter_begin = rs.begin();
-    iter_end = rs.begin() + size;
 }
 
 #endif //PROJECT_1_1_RADIX_SORT_H
