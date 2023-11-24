@@ -1,20 +1,31 @@
 #ifndef PROJECT_1_1_RADIX_SORT_H
 #define PROJECT_1_1_RADIX_SORT_H
 
-#define iterator1 std::vector<std::pair<std::vector<int>::iterator,int>>::iterator
 
-static std::vector<std::vector<std::pair<iterator1, int>>> counting_sort(iterator1  iter_begin, iterator1 iter_end, int max_num){
-    std::vector<std::vector<std::pair<iterator1, int>>> box;
-    for (int i = 0; i < max_num; i++){
-        std::vector<std::pair<iterator1, int>> aux;
-        box.push_back(aux);
+static std::vector<int> counting_sort(std::vector<int>::iterator iter_begin, std::vector<int>::iterator iter_end, int digit_to_sort, int max_digits){
+    std::vector<int> pos;
+    std::vector<int> sorted;
+    for(int i = 0; i < 11; i++) pos.push_back(0);
+    for(int i = 0; i < std::distance(iter_begin, iter_end); i++) sorted.push_back(0);
+    for(auto i = iter_begin; i <= iter_end; i++){
+        int aux = *i, digit;
+        for(int j = 0; j < max_digits; j++){
+            if(j = digit_to_sort) digit = aux%10;
+                aux /= 10;
+        }
+        pos[digit] += 1;
     }
-    for (auto j = iter_begin; j <= iter_end; j++){
-        std::vector<int>::iterator aux_iter = (*j).first;
-        int aux_index = *aux_iter;
-        box[aux_index].push_back(*j); // make_pair also doesn't work
+    for(int i = 1; i < pos.size(); i++) pos[i] += pos[i - 1];
+    for(auto i = iter_end; i >= iter_begin; i-- ){
+        int aux = *i, digit;
+        for(int j = 0; j < max_digits; j++){
+            if(j = digit_to_sort) digit = aux%10;
+            aux /= 10;
+        }
+        pos[digit] --;
+        sorted[pos[digit]] = *i;
     }
-    return box;
+
 }
 
 static int find_max(std::vector<int>::iterator iter_begin, std::vector<int>::iterator iter_end){
@@ -33,7 +44,13 @@ void radix_sort(std::vector<int>::iterator iter_begin, std::vector<int>::iterato
         digits++;
         aux /= 10;
     } // number of digits in the biggest number is obtained
+    //int size = std::distance(iter_begin, iter_end);
+    for(int i = 0; i < digits; i++){
+        for(auto j = iter_begin; j <= iter_end; j++){
+            counting_sort();
+        }
 
+    }
 }
 
 #endif //PROJECT_1_1_RADIX_SORT_H
