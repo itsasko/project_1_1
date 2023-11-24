@@ -25,7 +25,7 @@ static std::vector<int> counting_sort(std::vector<int>::iterator iter_begin, std
         pos[digit] --;
         sorted[pos[digit]] = *i;
     }
-    return pos;
+    return sorted;
 }
 
 static int find_max(std::vector<int>::iterator iter_begin, std::vector<int>::iterator iter_end){
@@ -45,16 +45,12 @@ void radix_sort(std::vector<int>::iterator iter_begin, std::vector<int>::iterato
         digits++;
         aux /= 10;
     } // number of digits in the biggest number is obtained
+    iter_begin = rs.begin();
+    iter_end = rs.end()-1;
     for(int i = 1; i <= digits; i++){
         rs = counting_sort(iter_begin, iter_end, i, digits);
         for(auto k : rs) std::cout << k << " ";
         std::cout << std::endl;
-        iter_begin = rs.begin();
-        iter_end = rs.end() - 1;
-    }
-    for (auto i = rs.begin(); i != rs.end(); i++){
-        *iter_begin = *i;
-        iter_begin++;
     }
 }
 
