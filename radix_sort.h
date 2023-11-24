@@ -5,7 +5,7 @@
 static std::vector<int> counting_sort(std::vector<int>::iterator iter_begin, std::vector<int>::iterator iter_end, int digit_to_sort, int max_digits){
     std::vector<int> pos;
     std::vector<int> sorted;
-    for(int i = 0; i < 11; i++) pos.push_back(0);
+    for(int i = 0; i < 10; i++) pos.push_back(0);
     for(int i = 0; i < std::distance(iter_begin, iter_end); i++) sorted.push_back(0);
     for(auto i = iter_begin; i <= iter_end; i++){
         int aux = *i, digit;
@@ -19,7 +19,7 @@ static std::vector<int> counting_sort(std::vector<int>::iterator iter_begin, std
     for(auto i = iter_end; i >= iter_begin; i-- ){
         int aux = *i, digit;
         for(int j = 0; j < max_digits; j++){
-            if(j = digit_to_sort) digit = aux%10;
+            if(j == digit_to_sort) digit = aux%10;
             aux /= 10;
         }
         pos[digit] --;
@@ -49,9 +49,13 @@ void radix_sort(std::vector<int>::iterator iter_begin, std::vector<int>::iterato
         rs = counting_sort(iter_begin, iter_end, i, digits);
         for(auto k : rs) std::cout << k << " ";
         std::cout << std::endl;
+        iter_begin = rs.begin();
+        iter_end = rs.end() - 1;
     }
-    iter_end = rs.begin() + std::distance(iter_begin, iter_end);
-    iter_begin = rs.begin();
+    for (auto i = rs.begin(); i != rs.end(); i++){
+        *iter_begin = *i;
+        iter_begin++;
+    }
 }
 
 #endif //PROJECT_1_1_RADIX_SORT_H
