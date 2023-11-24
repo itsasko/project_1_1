@@ -9,9 +9,9 @@ static std::vector<int> counting_sort(std::vector<int>::iterator iter_begin, std
     for(int i = 0; i < std::distance(iter_begin, iter_end); i++) sorted.push_back(0);
     for(auto i = iter_begin; i <= iter_end; i++){
         int aux = *i, digit;
-        for(int j = 0; j < max_digits; j++){
+        for(int j = 1; j <= max_digits; j++){
             if(j = digit_to_sort) digit = aux%10;
-                aux /= 10;
+            aux /= 10;
         }
         pos[digit] += 1;
     }
@@ -25,7 +25,7 @@ static std::vector<int> counting_sort(std::vector<int>::iterator iter_begin, std
         pos[digit] --;
         sorted[pos[digit]] = *i;
     }
-
+    return pos;
 }
 
 static int find_max(std::vector<int>::iterator iter_begin, std::vector<int>::iterator iter_end){
@@ -39,15 +39,15 @@ static int find_max(std::vector<int>::iterator iter_begin, std::vector<int>::ite
 
 void radix_sort(std::vector<int>::iterator iter_begin, std::vector<int>::iterator iter_end) {
     int max_value = find_max(iter_begin, iter_end), digits = -1;
+    std::vector<int> bx;
     int aux = max_value;
     while (aux > 1) {
         digits++;
         aux /= 10;
     } // number of digits in the biggest number is obtained
-    //int size = std::distance(iter_begin, iter_end);
-    for(int i = 0; i < digits; i++){
-        for(auto j = iter_begin; j <= iter_end; j++){
-            counting_sort();
+    for(int i = 1; i <= digits; i++){
+        for(int j = 0; j < std::distance(iter_begin, iter_end); j++){
+            bx = counting_sort(iter_begin, iter_end, j, digits);
         }
 
     }
