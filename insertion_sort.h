@@ -1,17 +1,18 @@
 #ifndef PROJECT_1_1_INSERTION_SORT_H
 #define PROJECT_1_1_INSERTION_SORT_H
 
+void insert(std::vector<int> &xs, int len) {
+    for (int i = 1 ; i < len ; i++) {
+        int val = xs[i];
+        int cur = i;
 
+        while (cur > 0 && xs[cur - 1] > val) {
+            xs[cur] = xs[cur - 1];
+            cur--;
+        }
 
-void insertion_sort(std::vector<int>::iterator iter_begin, std::vector<int>::iterator iter_end){
-    std::vector<int>::iterator i = iter_begin;
-    std::vector<int>::iterator max_el = iter_begin;
-    for (i; i <= iter_end; i++){
-        if(*i > *max_el) *max_el = *i;
+        xs[cur] = val;
     }
-    std::swap(*max_el, *iter_end);
-    if(iter_begin != iter_end) insertion_sort(iter_begin, --iter_end);
-    return;
 }
 
 #endif //PROJECT_1_1_INSERTION_SORT_H
