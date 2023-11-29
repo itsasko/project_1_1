@@ -26,7 +26,6 @@ static std::vector<int> counting_sort(std::vector<int> &xs, int digit_to_sort, i
             }
             aux /= 10;
         }
-        std::cout << "Digit : " << digit << std::endl;
         pos[digit] --;
         sorted[pos[digit]] = xs[i];
     }
@@ -52,8 +51,6 @@ void radix_sort(std::vector<int> &xs) {
     rs = counting_sort(xs, 1, digits);
     for(int i = 2; i <= digits; i++){
         rs = counting_sort(rs, i, digits);
-        for(auto k : rs) std::cout << k << " ";
-        std::cout << std::endl;
     }
     xs = rs;
 
