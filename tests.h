@@ -10,18 +10,20 @@
 #include "insertion_sort.h"
 #include "radix_sort.h"
 
-static std::vector<int> random_numbers_generator(int lower_bound, int upper_bound, std::string filename){
+static std::vector<int> random_numbers_generator(int lower_bound, int upper_bound, std::string filename, std::string filename_sizes){
 
     using std::chrono::nanoseconds;
     std::random_device rd;
     std::mt19937 gen(rd());
 
-    std::ofstream fout(filename);
+    std::ofstream fout(filename, std::ios::app);
+    std::ofstream f_out(filename_sizes, std::ios::app);
 
     std::uniform_int_distribution<int> dist_elements(lower_bound, upper_bound);
     std::uniform_int_distribution<int> dist_size(1, 1000);
     std::vector<int> random_test;
     int test_vector_size = dist_size(gen);
+    f_out << test_vector_size << std::endl;
     int element;
     for(int i = 0; i < test_vector_size; i++){
         element = dist_elements(gen);
@@ -49,7 +51,8 @@ void print_vector(std::vector<int> some_vector){
 }
 
 void quick_sort_testing(){
-    std::vector<int> test(random_numbers_generator(-1000, 1000, "C:\\Users\\oksa\\uni_projects\\project_1_1\\data\\quick_sort_numbers.txt"));
+    std::vector<int> test(random_numbers_generator(-1000, 1000, "quick_sort_numbers.txt",
+                                                   "quick_sort_sizes.txt"));
     std::vector<int>::iterator begin = test.begin();
     std::vector<int>::iterator end = test.end() - 1;
 
@@ -60,7 +63,8 @@ void quick_sort_testing(){
 
 }
 void heap_sort_testing(){
-    std::vector<int> test = random_numbers_generator(0, 1000, "C:\\Users\\oksa\\uni_projects\\project_1_1\\data\\heap_sort_numbers.txt");
+    std::vector<int> test = random_numbers_generator(0, 1000, "heap_sort_numbers.txt",
+                                                     "heap_sort_sizes.txt");
     /*
     std::vector<int> test = {4, 99, 82, 64, 27, 1, 81, 71, 0, 25, 50, 6, 22, 88, 96, 31, 63, 20, 64, 99};
     //std::vector<int> test = {3, 9, 8, 2, 9, 7, 4, 5, 6, 4, 9, 4, 7, 7, 1, 4, 0, 7, 1, 0, 5, 5, 8, 2, 8, 0}; */
@@ -80,7 +84,8 @@ void heap_sort_testing(){
     //else std::cout << "NOT PASSED" << std::endl;
 }
 void insertion_sort_testing(){
-    std::vector<int> test = random_numbers_generator(-1000, 1000, "C:\\Users\\oksa\\uni_projects\\project_1_1\\data\\insertion_sort_numbers.txt");
+    std::vector<int> test = random_numbers_generator(-1000, 1000, "insertion_sort_numbers.txt",
+                                                     "insertion_sort_sizes.txt");
 
     insertion_sort(test, test.size());
 
@@ -90,7 +95,8 @@ void insertion_sort_testing(){
 }
 
 void radix_sort_testing(){
-    std::vector<int> test = random_numbers_generator(0, 1000, "C:\\Users\\oksa\\uni_projects\\project_1_1\\data\\radix_sort_numbers.txt");
+    std::vector<int> test = random_numbers_generator(0, 1000, "radix_sort_numbers.txt",
+                                                     "radix_sort_sizes.txt");
 
     radix_sort(test);
 
