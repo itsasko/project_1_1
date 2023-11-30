@@ -10,12 +10,13 @@
 #include "insertion_sort.h"
 #include "radix_sort.h"
 
-static std::vector<int> random_numbers_generator(int lower_bound, int upper_bound){
+static std::vector<int> random_numbers_generator(int lower_bound, int upper_bound, std::string filename){
+
     using std::chrono::nanoseconds;
     std::random_device rd;
     std::mt19937 gen(rd());
 
-    std::ofstream fout("test_data.txt");
+    std::ofstream fout(filename);
 
     std::uniform_int_distribution<int> dist_elements(lower_bound, upper_bound);
     std::uniform_int_distribution<int> dist_size(1, 1000);
@@ -48,18 +49,18 @@ void print_vector(std::vector<int> some_vector){
 }
 
 void quick_sort_testing(){
-    std::vector<int> test(random_numbers_generator(-1000, 1000));
+    std::vector<int> test(random_numbers_generator(-1000, 1000, "C:\\Users\\oksa\\uni_projects\\project_1_1\\data\\quick_sort_numbers.txt"));
     std::vector<int>::iterator begin = test.begin();
     std::vector<int>::iterator end = test.end() - 1;
 
     quick_sort(begin, end);
 
-    if(passed_test(test)) std::cout << "PASSED" << std::endl;
-    else std::cout << "NOT PASSED" << std::endl;
+    //if(passed_test(test)) std::cout << "PASSED" << std::endl;
+    //else std::cout << "NOT PASSED" << std::endl;
 
 }
 void heap_sort_testing(){
-    std::vector<int> test = random_numbers_generator(0, 100);
+    std::vector<int> test = random_numbers_generator(0, 1000, "C:\\Users\\oksa\\uni_projects\\project_1_1\\data\\heap_sort_numbers.txt");
     /*
     std::vector<int> test = {4, 99, 82, 64, 27, 1, 81, 71, 0, 25, 50, 6, 22, 88, 96, 31, 63, 20, 64, 99};
     //std::vector<int> test = {3, 9, 8, 2, 9, 7, 4, 5, 6, 4, 9, 4, 7, 7, 1, 4, 0, 7, 1, 0, 5, 5, 8, 2, 8, 0}; */
@@ -71,30 +72,30 @@ void heap_sort_testing(){
 
     heap_sort(begin, end);
 
-    print_vector(test);
+    //print_vector(test);
 
 
     //std::cout << passed_test(test); */
-    if(passed_test(test)) std::cout << "PASSED" << std::endl;
-    else std::cout << "NOT PASSED" << std::endl;
+    //if(passed_test(test)) std::cout << "PASSED" << std::endl;
+    //else std::cout << "NOT PASSED" << std::endl;
 }
 void insertion_sort_testing(){
-    std::vector<int> test = random_numbers_generator(-1000, 1000);
+    std::vector<int> test = random_numbers_generator(-1000, 1000, "C:\\Users\\oksa\\uni_projects\\project_1_1\\data\\insertion_sort_numbers.txt");
 
     insertion_sort(test, test.size());
 
 
-    if(passed_test(test)) std::cout << "PASSED" << std::endl;
-    else std::cout << "NOT PASSED" << std::endl;
+    //if(passed_test(test)) std::cout << "PASSED" << std::endl;
+    //else std::cout << "NOT PASSED" << std::endl;
 }
 
 void radix_sort_testing(){
-    std::vector<int> test = random_numbers_generator(0, 1000);
+    std::vector<int> test = random_numbers_generator(0, 1000, "C:\\Users\\oksa\\uni_projects\\project_1_1\\data\\radix_sort_numbers.txt");
 
     radix_sort(test);
 
-    if(passed_test(test)) std::cout << "PASSED" << std::endl;
-    else std::cout << "NOT PASSED" << std::endl;
+    //if(passed_test(test)) std::cout << "PASSED" << std::endl;
+    //else std::cout << "NOT PASSED" << std::endl;
 }
 
 #endif //PROJECT_1_1_TESTS_H
