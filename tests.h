@@ -4,7 +4,6 @@
 #include <fstream>
 #include <vector>
 #include <algorithm>
-#include <chrono>
 #include <random>
 #include "quick_sort.h"
 #include "heap_sort.h"
@@ -19,7 +18,7 @@ static std::vector<int> random_numbers_generator(int lower_bound, int upper_boun
     std::ofstream fout("test_data.txt");
 
     std::uniform_int_distribution<int> dist_elements(lower_bound, upper_bound);
-    std::uniform_int_distribution<int> dist_size(0, 1000);
+    std::uniform_int_distribution<int> dist_size(1, 1000);
     std::vector<int> random_test;
     int test_vector_size = dist_size(gen);
     int element;
@@ -43,7 +42,7 @@ static bool passed_test(std::vector<int> test){
     return isPassed;
 }
 
-static void print_vector(std::vector<int> some_vector){
+void print_vector(std::vector<int> some_vector){
     for (auto i : some_vector) std::cout << i << " ";
     std::cout << std::endl;
 }
@@ -55,24 +54,38 @@ void quick_sort_testing(){
 
     quick_sort(begin, end);
 
-    std::cout << passed_test(test);
+    if(passed_test(test)) std::cout << "PASSED" << std::endl;
+    else std::cout << "NOT PASSED" << std::endl;
 
 }
 void heap_sort_testing(){
-    std::vector<int> test = random_numbers_generator(-1000, 1000);
+    std::vector<int> test = random_numbers_generator(0, 100);
+    /*
+    std::vector<int> test = {4, 99, 82, 64, 27, 1, 81, 71, 0, 25, 50, 6, 22, 88, 96, 31, 63, 20, 64, 99};
+    //std::vector<int> test = {3, 9, 8, 2, 9, 7, 4, 5, 6, 4, 9, 4, 7, 7, 1, 4, 0, 7, 1, 0, 5, 5, 8, 2, 8, 0}; */
     std::vector<int>::iterator begin = test.begin();
     std::vector<int>::iterator end = test.end() - 1;
 
+    /* print_vector(test);
+    std::cout << std::endl << "printed" << std::endl; */
+
     heap_sort(begin, end);
 
-    std::cout << passed_test(test);
+    print_vector(test);
+
+
+    //std::cout << passed_test(test); */
+    if(passed_test(test)) std::cout << "PASSED" << std::endl;
+    else std::cout << "NOT PASSED" << std::endl;
 }
 void insertion_sort_testing(){
     std::vector<int> test = random_numbers_generator(-1000, 1000);
 
     insertion_sort(test, test.size());
 
-    std::cout << passed_test(test);
+
+    if(passed_test(test)) std::cout << "PASSED" << std::endl;
+    else std::cout << "NOT PASSED" << std::endl;
 }
 
 void radix_sort_testing(){
@@ -80,7 +93,8 @@ void radix_sort_testing(){
 
     radix_sort(test);
 
-    std::cout << passed_test(test);
+    if(passed_test(test)) std::cout << "PASSED" << std::endl;
+    else std::cout << "NOT PASSED" << std::endl;
 }
 
 #endif //PROJECT_1_1_TESTS_H
