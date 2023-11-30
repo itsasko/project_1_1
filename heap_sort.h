@@ -23,8 +23,8 @@ void building_a_heap(std::vector<int>::iterator iter_begin, std::vector<int>::it
             if(i == heap.begin()) break;
         }
     }
-    for(auto i : heap) std::cout << i << " ";
-    std::cout << std::endl;
+    //for(auto i : heap) std::cout << i << " ";
+    //std::cout << std::endl;
     std::vector<int>::iterator i_1;
     for (i_1 = heap.begin(); i_1 != heap.end(); i_1++) {
         *iter_begin = *i_1;

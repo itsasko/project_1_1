@@ -1,7 +1,7 @@
 #ifndef PROJECT_1_1_INSERTION_SORT_H
 #define PROJECT_1_1_INSERTION_SORT_H
 
-void insertion_sort(std::vector<int> &xs, int len) {
+void insertion_sort(std::vector<int> &xs, int len ) {
     for (int i = 1 ; i < len ; i++) {
         int val = xs[i];
         int cur = i;

@@ -64,21 +64,11 @@ void quick_sort_testing(){
 void heap_sort_testing(){
     std::vector<int> test = random_numbers_generator(0, 1000, "heap_sort_numbers.txt",
                                                      "heap_sort_sizes.txt");
-    /*
-    std::vector<int> test = {4, 99, 82, 64, 27, 1, 81, 71, 0, 25, 50, 6, 22, 88, 96, 31, 63, 20, 64, 99};
-    //std::vector<int> test = {3, 9, 8, 2, 9, 7, 4, 5, 6, 4, 9, 4, 7, 7, 1, 4, 0, 7, 1, 0, 5, 5, 8, 2, 8, 0}; */
     std::vector<int>::iterator begin = test.begin();
     std::vector<int>::iterator end = test.end() - 1;
 
-    /* print_vector(test);
-    std::cout << std::endl << "printed" << std::endl; */
-
     heap_sort(begin, end);
 
-    //print_vector(test);
-
-
-    //std::cout << passed_test(test); */
     //if(passed_test(test)) std::cout << "PASSED" << std::endl;
     //else std::cout << "NOT PASSED" << std::endl;
 }

@@ -59,6 +59,5 @@ void data_collecting(){
 
 int main() {
     data_collecting();
-    //std::cout << "Duration: " << time_measurement_q() << " nanoseconds" << std::endl;
     return 0;
 }
