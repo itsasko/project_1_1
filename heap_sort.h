@@ -28,15 +28,17 @@ void building_a_heap(std::vector<int>::iterator iter_begin, std::vector<int>::it
         *iter_begin = *i_1;
         iter_begin++;
     }
+    for(auto i = iter_begin; i <= iter_end; i++) std::cout << *i << " ";
+    std::cout << std::endl;
 }
 
-void fixing_a_heap(std::vector<int>::iterator iter_begin, std::vector<int>::iterator iter_end){
+void fixing_a_heap(std::vector<int> &heap){
     int i_index = 0, left_child_index = 1, right_child_index = 2;
-    int heap_size = std::distance(iter_begin, iter_end);
-    std::vector<int>::iterator i = iter_begin;
-    std::vector<int>::iterator right_child = iter_begin + right_child_index;
-    std::vector<int>::iterator left_child = iter_begin + left_child_index;
-    while (i <= iter_end){
+    int heap_size = heap.size();
+    std::vector<int>::iterator i = heap.begin();
+    std::vector<int>::iterator right_child = heap.begin() + right_child_index;
+    std::vector<int>::iterator left_child = heap.begin() + left_child_index;
+    while (i < heap.end()){
         if(*i < *left_child && left_child_index <= heap_size){
             std::swap(*i, *left_child);
             std::swap(i, left_child);
@@ -46,9 +48,9 @@ void fixing_a_heap(std::vector<int>::iterator iter_begin, std::vector<int>::iter
                 std::swap(left_child, right_child);
             }
             right_child_index = 2 * i_index + 2;
-            right_child = iter_begin + right_child_index;
+            right_child = heap.begin() + right_child_index;
             left_child_index = 2 * i_index + 1;
-            left_child = iter_begin + left_child_index;
+            left_child = heap.begin() + left_child_index;
 
         }
         else if(*i < *right_child && right_child_index <= heap_size){
@@ -56,7 +58,7 @@ void fixing_a_heap(std::vector<int>::iterator iter_begin, std::vector<int>::iter
             std::swap(i, right_child);
             i_index = right_child_index;
             right_child_index = 2 * i_index + 2;
-            right_child = iter_begin + right_child_index;
+            right_child = heap.begin() + right_child_index;
         }
         else break;
     }
@@ -66,7 +68,12 @@ void heap_sort(std::vector<int>::iterator iter_begin, std::vector<int>::iterator
     building_a_heap(iter_begin, iter_end);
     for (std::vector<int>::iterator j = iter_end; j >= iter_begin; j--){
         std::swap(*iter_end, *iter_begin);
-        fixing_a_heap(iter_begin, --iter_end);
+        --iter_end;
+        std::vector<int> aux;
+        for (int i = 0; i < std::distance(iter_begin, iter_end); i++) aux.push_back(*(iter_begin + i));
+        fixing_a_heap(aux);
+        for(auto i = iter_begin; i <= iter_end; i++) std::cout << *i << " ";
+        std::cout << std::endl;
     }
 }
 #endif //PROJECT_1_1_HEAP_SORT_H
