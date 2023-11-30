@@ -12,7 +12,6 @@
 
 static std::vector<int> random_numbers_generator(int lower_bound, int upper_bound, std::string filename, std::string filename_sizes){
 
-    using std::chrono::nanoseconds;
     std::random_device rd;
     std::mt19937 gen(rd());
 
