@@ -65,9 +65,6 @@ void fixing_a_heap(std::vector<int>::iterator iter_begin, std::vector<int>::iter
 void heap_sort(std::vector<int>::iterator iter_begin, std::vector<int>::iterator iter_end){
     building_a_heap(iter_begin, iter_end);
     for (std::vector<int>::iterator j = iter_end; j >= iter_begin; j--){
-        for (auto k = iter_begin; k <= iter_end; k++) std::cout << *k << " ";
-        std::cout << std::endl;
-        //std::cout << *iter_begin << std::endl;
         std::swap(*iter_end, *iter_begin);
         fixing_a_heap(iter_begin, --iter_end);
     }
