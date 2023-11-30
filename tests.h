@@ -33,51 +33,54 @@ static std::vector<int> random_numbers_generator(int lower_bound, int upper_boun
     return random_test;
 
 }
+static bool passed_test(std::vector<int> test){
+    bool isPassed = true;
+    for(int i = 1; i < test.size(); i++){
+        if(test[i] < test[i-1]){
+            isPassed = false;
+        }
+    }
+    return isPassed;
+}
+
+static void print_vector(std::vector<int> some_vector){
+    for (auto i : some_vector) std::cout << i << " ";
+    std::cout << std::endl;
+}
 
 void quick_sort_testing(){
     std::vector<int> test(random_numbers_generator(-1000, 1000));
     std::vector<int>::iterator begin = test.begin();
     std::vector<int>::iterator end = test.end() - 1;
-    std::cout << "Quick sort " << std::endl;
-    std::cout << "Original vector of numbers: ";
-    for (auto i : test) std::cout << i << " ";
-    std::cout << std::endl;
+
     quick_sort(begin, end);
-    std::cout << "Sorted : ";
-    for (auto i : test) std::cout << i << " ";
+
+    std::cout << passed_test(test);
+
 }
 void heap_sort_testing(){
     std::vector<int> test = random_numbers_generator(-1000, 1000);
     std::vector<int>::iterator begin = test.begin();
     std::vector<int>::iterator end = test.end() - 1;
-    std::cout << "Heap sort " << std::endl;
-    std::cout << "Original vector of numbers: ";
-    for (auto i : test) std::cout << i << " ";
-    std::cout << std::endl;
+
     heap_sort(begin, end);
-    std::cout << "Sorted : ";
-    for (auto i : test) std::cout << i << " ";
+
+    std::cout << passed_test(test);
 }
 void insertion_sort_testing(){
     std::vector<int> test = random_numbers_generator(-1000, 1000);
-    std::cout << "Insertion sort " << std::endl;
-    std::cout << "Original vector of numbers: ";
-    for (auto i : test) std::cout << i << " ";
-    std::cout << std::endl;
+
     insertion_sort(test, test.size());
-    std::cout << "Sorted : ";
-    for (auto i : test) std::cout << i << " ";
+
+    std::cout << passed_test(test);
 }
 
 void radix_sort_testing(){
     std::vector<int> test = random_numbers_generator(0, 1000);
-    std::cout << "Radix sort " << std::endl;
-    std::cout << "Original vector of numbers: ";
-    for (auto i : test) std::cout << i << " ";
-    std::cout << std::endl;
+
     radix_sort(test);
-    std::cout << "Sorted : ";
-    for (auto i : test) std::cout << i << " ";
+
+    std::cout << passed_test(test);
 }
 
 #endif //PROJECT_1_1_TESTS_H
